@@ -1,6 +1,6 @@
 import sqlite3
 import os
-
+from hasher import *
 if not os.path.exists("data/data.db"):
     with open("data/data.db", "w") as file:
         pass
@@ -25,6 +25,4 @@ def add_to_db(username, email, password, app_url, app_name):
 # Function to list all password
 def list_all():
     cursor.execute("SELECT * FROM everything")
-    print(cursor.fetchall())
-
-list_all()
+    return cursor.fetchall()
