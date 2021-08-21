@@ -11,16 +11,42 @@
 from db import *
 from hasher import *
 import json
+from interface import *
 
 with open("data/data.json") as file:
     data = json.load(file)
+
+def print_menu():
+    print("---------------MENU---------------")
+    print("[a] for adding passwords to database")
+    print("[s] for getting passwords from the database")
+    print("[q] for quiting the application ")
+    print("[h] for listing out the menu ")
+    print("---------------MENU---------------")
+
+def run_application():
+    commands = {
+        "a":add_from_user,
+        "s":list_for_user,
+        "q":exit,
+        "h":print_menu
+    }
+    print_menu()
+    while True:
+        
+        inp = input("$ ")
+        
+        for i in commands:
+            if i == inp:
+                func = commands[i]
+                func()
 
 if data != {}:
     print("Please use the master key to acces your passwords: ")
     key = input("Enter your master key : ")
 
     if data["key"] == hash_string(key):
-        print("ur inside!")
+        run_application()
     else:
         print("Wrong key try again!")
 

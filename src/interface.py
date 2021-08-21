@@ -1,3 +1,8 @@
+# author : snehashish laskar
+# date : 20-08-2021
+# time : 19:38
+
+# Imports
 from db import *
 from encryption import *
 
@@ -49,4 +54,16 @@ def list_for_user():
     for i in list_of_passwords:
         names.append(i.app_name)
     
-    print(names)
+    if site_name not in names:
+        print("Sorry but you haven't stored a password for this site")
+    else:
+        for i in list_of_passwords:
+            if site_name == i.app_name:
+                print("\n-------DETAILS-------")
+                print(f"App Name : {i.app_name}")
+                print(f"App Url : {i.app_url}")
+                print(f"email used : {i.email}")
+                print(f"username : {i.username}")
+                print(f"password: {i.password}")
+            else:
+                pass

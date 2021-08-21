@@ -1,6 +1,8 @@
 import sqlite3
 import os
 from hasher import *
+
+
 if not os.path.exists("data/data.db"):
     with open("data/data.db", "w") as file:
         pass
