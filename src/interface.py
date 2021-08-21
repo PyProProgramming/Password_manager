@@ -41,8 +41,12 @@ def list_for_user():
             password=i[0],
             app_url = i[1],
             app_name=i[2]
-        ).form_data())
+        ))
 
-    print(list_of_passwords)
+    site_name = input('enter the site/apps name whose password you are looking for : \n')    
 
-list_for_user()
+    names = []
+    for i in list_of_passwords:
+        names.append(i.app_name)
+    
+    print(names)
