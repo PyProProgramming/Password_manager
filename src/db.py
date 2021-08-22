@@ -1,15 +1,19 @@
+# Imports
 import sqlite3
 import os
 from hasher import *
 
-
+# Creating the database file if not already created
 if not os.path.exists("data/data.db"):
     with open("data/data.db", "w") as file:
         pass
 
+# Connecting to the database
 conn = sqlite3.connect("data/data.db")
+# Getting the cursor object
 cursor = conn.cursor()
 
+# Creating the table if it already hasnt been made
 cursor.execute("""CREATE TABLE IF NOT EXISTS everything(
     password text, 
     app_url text, 
