@@ -3,19 +3,20 @@
 # time : 19:38
 
 # THIS IS A PASSWORD MANAGER TO STORE AND MANAGE PASSWORDS
-# IT USES SQLITE DATABSE FOR STORING PASSWORDS WHICH CAN BE
+# IT USES SQLITE DATABASE FOR STORING PASSWORDS WHICH CAN BE
 # STORED IN THE FORMS OF FILES LOCALLY ANYWHERE. 
 # IT HAS A BASIC CLI MENU FOR USAGE
 
-# Imports
-from db import *
-from hasher import *
 import json
+
+# Imports
+from hasher import *
 from interface import *
 
 # Opening the json file to be able to access the key
 with open("data/data.json") as file:
     data = json.load(file)
+
 
 # Function to print the menu
 def print_menu():
@@ -26,14 +27,15 @@ def print_menu():
     print("[help] for listing out the menu ")
     print("---------------MENU---------------")
 
-# The Core of the appliation
+
+# The Core of the application
 def run_application():
     # A list of commands and the functions to react to the commands
     commands = {
-        "add":add_from_user,
-        "search":list_for_user,
-        "exit":exit,
-        "help":print_menu
+        "add": add_from_user,
+        "search": list_for_user,
+        "exit": exit,
+        "help": print_menu
     }
     # Main core
     # Printing the menu on startup
@@ -41,7 +43,7 @@ def run_application():
     # Running a forever loop
     while True:
         # getting the user input
-        inp = input("$ ")
+        inp = input("password manager$ ")
         # running through the commands
         for i in commands:
             # Checking if the input is a valid command
@@ -50,8 +52,9 @@ def run_application():
                 func = commands[i]
                 func()
 
+
 if data != {}:
-    print("Please use the master key to acces your passwords: ")
+    print("Please use the master key to access your passwords: ")
     key = input("Enter your master key : ")
 
     if data["key"] == hash_string(key):
@@ -67,4 +70,3 @@ else:
 
     with open("data/data.json", "w") as file:
         json.dump(data, file)
-
